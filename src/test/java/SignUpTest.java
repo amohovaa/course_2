@@ -26,34 +26,33 @@ public class SignUpTest {
         driver.get("https://www.spotify.com/kg-ru/signup");
     }
 
-    @Test
-    public void typeInvalidYear() {
-        page = new SignUpPage(driver);
-        page.setMonth("Октябрь").typeDay("4").typeYear("85").setShare(true);
-        Assert.assertTrue(page.isErrorVisible("Укажите действительный год."));
-    }
+//    @Test
+//    public void typeInvalidYear() {
+//        page = new SignUpPage(driver);
+//        page.setMonth("Октябрь").typeDay("4").typeYear("85").setShare(true);
+//        Assert.assertTrue(page.isErrorVisible("Укажите действительный год."));
+//    }
+
+//    @Test
+//    public void typeInvalidEmail() {
+//        page = new SignUpPage(driver);
+//        page.typeEmail("test@mail.test").typeConfirmEmail("wrong@mail.test").typeName("Testname");
+//        Assert.assertTrue(page.isErrorVisible("Адреса электронной почты не совпадают."));
+//    }
 
     @Test
-    public void typeInvalidEmail() {
+    public void signUpShortPassword() {
         page = new SignUpPage(driver);
-        page.typeEmail("test@mail.test").typeConfirmEmail("wrong@mail.test").typeName("Testname").clickSignUpButton();
-        Assert.assertTrue(page.isErrorVisible("Адреса электронной почты не совпадают."));
-    }
-
-    @Test
-    public void signUpEmptyPassword() {
-        page = new SignUpPage(driver);
-        page.typeEmail("test@mail.test").typeConfirmEmail("test@mail.test").typeName("Testname").clickSignUpButton();
-        Assert.assertTrue(page.isErrorVisible("Введите пароль."));
+        page.typeEmail("test@mail.test").typeConfirmEmail("test@mail.test").typePassword(" ").typeName("Testname");
+        Assert.assertTrue(page.isErrorVisible("Пароль слишком короткий."));
     }
 
     @Test
     public void typeInvalidValues() {
         page = new SignUpPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        page.typeEmail("test").typeConfirmEmail("test@mail.test").typePassword("qwerty!123").typeName("Name").clickSignUpButton();
-        Assert.assertEquals(5, page.getErrors().size());
-        Assert.assertEquals("Укажите действительный день месяца.", page.getErrorByNumber(3));
+        page.typeEmail("test").typeConfirmEmail("test@mail.test").typePassword("qwerty!123").typeName("Name");
+        Assert.assertEquals(2, page.getErrors().size());
+        Assert.assertEquals("Адреса электронной почты не совпадают.", page.getErrorByNumber(2));
     }
 
     @After

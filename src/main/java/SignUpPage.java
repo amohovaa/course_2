@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class SignUpPage {
     WebDriver driver;
@@ -58,7 +60,8 @@ public class SignUpPage {
 
     public SignUpPage setMonth(String month) {
         driver.findElement(monthDropDown).click();
-        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(xpath(format(monthDropDownOption, month)))).click();
+        driver.findElement(xpath(format(monthDropDownOption, month))).click();
+//        new WebDriverWait(driver, 5).until(visibilityOfElementLocated(xpath(format(monthDropDownOption, month)))).click();
         return this;
     }
 
@@ -81,8 +84,8 @@ public class SignUpPage {
     }
 
     public void clickSignUpButton() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(registerButton)).click();
-
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(visibilityOfElementLocated(registerButton)).click();
     }
 
     public List<WebElement> getErrors() {
