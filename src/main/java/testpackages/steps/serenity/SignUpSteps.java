@@ -1,11 +1,12 @@
-package steps;
+package testpackages.steps.serenity;
 
 import net.thucydides.core.annotations.Step;
-
 import org.assertj.core.api.Assertions;
-import pages.SignUpPage;
+import testpackages.pages.SignUpPage;
+
 
 public class SignUpSteps {
+
     SignUpPage page;
 
     @Step
@@ -13,7 +14,7 @@ public class SignUpSteps {
         page.open();
     }
 
-    @Step("User types email [0]")
+    @Step
     public void type_email(String mail) {
         page.typeEmail(mail);
     }
