@@ -1,17 +1,13 @@
+package steps;
+
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.SignUpPage;
 import steps.SignUpSteps;
 
-import java.util.concurrent.TimeUnit;
 @RunWith(SerenityRunner.class)
 public class SignUpTest {
     @Steps
@@ -35,8 +31,8 @@ public class SignUpTest {
         steps.open_signup_page();
         steps.type_email("test@mail.test");
         steps.type_confirmation_email("wrong@mail.test");
-        steps.type_name("Testname");
         steps.type_password(" ");
+        steps.type_name("Testname");
         steps.should_see_error("Пароль слишком короткий.");
     }
 //    private WebDriver driver;
