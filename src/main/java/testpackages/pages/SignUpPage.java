@@ -2,7 +2,7 @@ package testpackages.pages;
 
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.pages.PageObject;
+import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
-@DefaultUrl("https://www.spotify.com/kg-ru/signup")
+@DefaultUrl("https://www.spotify.com/kg-ru/signup/")
 public class SignUpPage extends PageObject {
 
 //    WebDriver driver;
